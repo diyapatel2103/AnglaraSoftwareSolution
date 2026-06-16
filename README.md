@@ -1,4 +1,4 @@
-# AnglaraSoftwareSolution
+# AnglaraDigitalSolution
 Project Overview
 
 This project automates the login functionality of the website
