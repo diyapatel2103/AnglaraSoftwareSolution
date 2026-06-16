@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>SauceDemo Automation Report</title>
+    <style>
+        body { font-family: Arial; background-color: #f4f4f4; }
+        h1 { text-align: center; }
+        table { width: 80%; margin: auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #333; color: white; }
+        .PASS { background-color: lightgrey; }
+        .FAIL { background-color: #f7c5c5; }
+    </style>
+</head>
+
+<body>
+
+<h1>SauceDemo Automation Test Report</h1>
+
+<table>
+    <tr>
+        <th>Test Case</th>
+        <th>Status</th>
+        <th>Message</th>
+    </tr>
+
+    <tr class="PASS">
+        <td>Valid Login</td>
+        <td>PASS</td>
+        <td>Login successful</td>
+    </tr>
+
+    <tr class="PASS">
+        <td>Invalid Login</td>
+        <td>PASS</td>
+        <td>Error message shown</td>
+    </tr>
+
+    <tr class="PASS">
+        <td>Empty Username</td>
+        <td>PASS</td>
+        <td>Username required error shown</td>
+    </tr>
+
+    <tr class="PASS">
+        <td>Empty Password</td>
+        <td>PASS</td>
+        <td>Password required error shown</td>
+    </tr>
+
+</table>
+
+</body>
+</html>
