@@ -1,0 +1,234 @@
+{
+  "info": {
+    "_postman_id": "5bb77248-9ee4-4b69-9348-8fb7ca9028dd",
+    "name": "ReqRes API Testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46795062"
+  },
+  "item": [
+    {
+      "name": "getuser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time is less than 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response contains users\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.data.length).to.be.above(0);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"User has required fields\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "\r",
+              "    jsonData.data.forEach(function(user){\r",
+              "        pm.expect(user).to.have.property(\"id\");\r",
+              "        pm.expect(user).to.have.property(\"email\");\r",
+              "        pm.expect(user).to.have.property(\"first_name\");\r",
+              "        pm.expect(user).to.have.property(\"last_name\");\r",
+              "        pm.expect(user).to.have.property(\"avatar\");\r",
+              "    });\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "free_user_3FBd6bcbz3enGypA4N8DLXVGeEW",
+            "type": "text"
+          },
+          {
+            "key": "content",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://reqres.in/api/users?page=2",
+          "protocol": "https",
+          "host": [
+            "reqres",
+            "in"
+          ],
+          "path": [
+            "api",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createuser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time less than 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "var jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Name is correct\", function () {\r",
+              "    pm.expect(jsonData.name).to.eql(\"Diya\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Job is correct\", function () {\r",
+              "    pm.expect(jsonData.job).to.eql(\"QA Engineer\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"ID generated\", function () {\r",
+              "    pm.expect(jsonData.id).to.not.be.null;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"CreatedAt generated\", function () {\r",
+              "    pm.expect(jsonData.createdAt).to.not.be.null;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "free_user_3FBd6bcbz3enGypA4N8DLXVGeEW",
+            "type": "text"
+          },
+          {
+            "key": "con",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Diya\",\r\n  \"job\": \"QA Engineer\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://reqres.in/api/users",
+          "protocol": "https",
+          "host": [
+            "reqres",
+            "in"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateuser",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time less than 1000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "var jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Name updated correctly\", function () {\r",
+              "    pm.expect(jsonData.name).to.eql(\"Diya Patel\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Job updated correctly\", function () {\r",
+              "    pm.expect(jsonData.job).to.eql(\"Senior QA Engineer\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"UpdatedAt exists\", function () {\r",
+              "    pm.expect(jsonData.updatedAt).to.not.be.null;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "free_user_3FBd6bcbz3enGypA4N8DLXVGeEW",
+            "type": "text"
+          },
+          {
+            "key": "cont",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Diya Patel\",\r\n  \"job\": \"Senior QA Engineer\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://reqres.in/api/users/2",
+          "protocol": "https",
+          "host": [
+            "reqres",
+            "in"
+          ],
+          "path": [
+            "api",
+            "users",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
